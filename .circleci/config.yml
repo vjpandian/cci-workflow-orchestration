@@ -1,0 +1,31 @@
+version: 2.1
+
+executors:
+  docker-default:
+    docker:
+      - image: cimg/base:stable
+
+jobs:
+  build-job:
+    parameters:
+      env:
+        type: string
+        default: dev
+    steps:
+      - checkout
+      - run: echo Building << parameters.env >> environment
+
+workflows:
+  wf-1:
+    jobs:
+      - build-job:
+           env: dev
+  wf-2:
+    jobs:
+      - build-job: 
+           env: staging
+  wf-3:
+    jobs:
+      - build-job:
+           env: prod
+           
