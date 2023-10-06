@@ -7,6 +7,7 @@ executors:
 
 jobs:
   build-job:
+    executor: docker-default
     parameters:
       env:
         type: string
